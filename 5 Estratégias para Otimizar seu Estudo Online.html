@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dica do Tutor: 5 Estratégias para Otimizar seu Estudo a Distância</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        @media print {
+            body {
+                background-color: #ffffff;
+            }
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+            .shadow-2xl, .shadow-lg, .shadow-md {
+                box-shadow: none !important;
+            }
+            .bg-gradient-to-r, .bg-white {
+                background-color: #ffffff !important;
+                color: #000000;
+            }
+            .text-white {
+                color: #000000;
+            }
+            .rounded-lg {
+                border-radius: 0;
+            }
+            h1, h2, h3 {
+                color: #000000 !important;
+            }
+            .text-[#A5CAD6] {
+                color: #555555;
+            }
+            .p-8 {
+                padding: 2rem !important;
+            }
+            article {
+                page-break-before: always;
+            }
+            #personalized-tip, #personalized-tip + div {
+                display: none;
+            }
+            .chart-container {
+                height: 400px;
+                max-height: 400px;
+            }
+            button {
+                display: none;
+            }
+            header {
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#E0F7FA]">
+    <!-- Chosen Palette: Brilliant Blues (Custom Adaptation) -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling infographic. The structure begins with a hero header and intro text. Each of the 5 study strategies is presented in its own dedicated 'card' section, combining explanatory text with a custom data visualization (chart or diagram) to illustrate the concept. This narrative, card-based flow was chosen over a simple list to make each strategy more engaging, memorable, and easier to digest. The user scrolls through a story of improvement, with each section building on the last. The page concludes with a clear call-to-action. -->
+    <!-- Visualization & Content Choices: 
+    - Strategy 1 (Routine): Goal=Organize -> Doughnut Chart (Chart.js) to show a balanced 24-hour day.
+    - Strategy 2 (Distractions): Goal=Compare -> Horizontal Bar Chart (Chart.js) to starkly contrast productivity levels.
+    - Strategy 3 (Pomodoro): Goal=Organize -> HTML/CSS Diagram to visually map the technique's flow without prohibited libraries.
+    - Strategy 4 (Interaction): Goal=Compare -> Radar Chart (Chart.js) to compare multiple skills for interactive vs. isolated students.
+    - Strategy 5 (Review): Goal=Change -> Line Chart (Chart.js) to visualize the "forgetting curve" and the impact of active review over time.
+    All choices use Canvas via Chart.js or standard HTML/CSS, adhering to the no SVG/Mermaid constraint. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-5xl">
+        <header class="text-center p-8 mb-10 rounded-lg bg-gradient-to-r from-[#003F5C] to-[#366E8A] text-white shadow-2xl">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Dica do Tutor: 5 Estratégias para Otimizar seu Estudo a Distância</h1>
+            <p class="text-xl text-[#A5CAD6] mb-4">Transforme sua experiência EAD!</p>
+            <p class="text-md font-semibold text-white">Giovanni Moreira Guimarães - Tutor EAD | Unifor</p>
+        </header>
+
+        <main>
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-10 text-center">
+                <h2 class="text-3xl font-bold text-[#003F5C] mb-4">Estudante EAD, você está aproveitando seu potencial? 🚀</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    O ensino a distância é flexível, mas exige estratégia! Como tutor EAD na Unifor, vejo muitos alunos com dificuldade em se organizar. Mas a boa notícia é que com algumas técnicas simples, você pode transformar sua rotina de estudos e maximizar seus resultados! Explore as estratégias abaixo e prepare-se para elevar seu aprendizado.
+                </p>
+            </section>
+
+            <div class="space-y-10">
+                <article id="strategy1" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#003F5C] mb-3">1. Crie uma Rotina Rígida (e Realista)</h3>
+                            <p class="text-gray-600 mb-4">Defina horários fixos para estudar, mesmo que seja por curtos períodos. A consistência é sua maior aliada. Trate como um compromisso inadiável.</p>
+                            <p class="text-gray-800">Uma rotina bem definida é a base do sucesso no EAD. O gráfico ao lado ilustra como um dia pode ser dividido de forma equilibrada, garantindo tempo para estudo, descanso e outras atividades. Alocar blocos de tempo específicos para os estudos transforma a intenção em ação concreta.</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="routineChart"></canvas>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="strategy2" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                         <div class="order-2 md:order-1">
+                            <div class="chart-container">
+                                <canvas id="distractionChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <h3 class="text-2xl font-bold text-[#003F5C] mb-3">2. Ambiente de Estudo Sem Distrações</h3>
+                            <p class="text-gray-600 mb-4">Escolha um local calmo, organizado e livre de interrupções (celular no silencioso, abas desnecessárias fechadas). Isso aumenta o foco e a produtividade.</p>
+                            <p class="text-gray-800">O impacto de um ambiente focado é imenso. Como o gráfico demonstra, a produtividade pode aumentar drasticamente quando eliminamos as distrações. Um espaço dedicado ao estudo sinaliza ao seu cérebro que é hora de se concentrar, otimizando a absorção do conteúdo.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="strategy3" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                    <h3 class="text-2xl font-bold text-[#003F5C] mb-3 text-center">3. Use a Técnica Pomodoro</h3>
+                    <p class="text-gray-600 mb-6 text-center max-w-2xl mx-auto">Estude por 25 minutos com foco total, faça uma pausa de 5 minutos. Repita 4 vezes e faça uma pausa mais longa (15-30 min). Ajuda a manter a concentração.</p>
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                        <div class="p-4 bg-[#E0F7FA] rounded-lg border-2 border-[#6B9DB3]">
+                            <p class="text-lg font-bold text-[#003F5C]">Foco</p>
+                            <p class="text-2xl font-bold text-[#366E8A]">25 min</p>
+                        </div>
+                        <div class="text-2xl font-bold text-[#6B9DB3]">&rarr;</div>
+                        <div class="p-4 bg-[#E0F7FA] rounded-lg border-2 border-[#6B9DB3]">
+                            <p class="text-lg font-bold text-[#003F5C]">Pausa Curta</p>
+                            <p class="text-2xl font-bold text-[#366E8A]">5 min</p>
+                        </div>
+                        <div class="text-2xl font-bold text-[#6B9DB3]">&times; 4</div>
+                        <div class="text-2xl font-bold text-[#6B9DB3]">&rarr;</div>
+                        <div class="p-4 bg-[#A5CAD6] rounded-lg border-2 border-[#366E8A]">
+                            <p class="text-lg font-bold text-[#003F5C]">Pausa Longa</p>
+                            <p class="text-2xl font-bold text-[#003F5C]">15-30 min</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="strategy4" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#003F5C] mb-3">4. Interaja com Seus Tutores e Colegas</h3>
+                            <p class="text-gray-600 mb-4">Não hesite em tirar dúvidas com seu tutor e participar de fóruns. A troca de conhecimento e o suporte mútuo enriquecem muito o aprendizado EAD.</p>
+                            <p class="text-gray-800">Estudar a distância não significa estudar sozinho. A colaboração é um catalisador para o aprendizado. O gráfico de radar ilustra como a interação impulsiona diversas competências, desde a motivação até a resolução de problemas, criando um perfil de aprendizado muito mais robusto.</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="interactionChart"></canvas>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="strategy5" class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="order-2 md:order-1">
+                            <div class="chart-container h-[400px]">
+                                <canvas id="retentionChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <h3 class="text-2xl font-bold text-[#003F5C] mb-3">5. Revise Ativamente e Faça Resumos</h3>
+                            <p class="text-gray-600 mb-4">Não apenas leia! Elabore mapas mentais, flashcards ou resumos com suas próprias palavras. Isso fortalece a memorização e a compreensão.</p>
+                            <p class="text-gray-800">A "curva do esquecimento" é um desafio real, mas a revisão ativa é a solução. O gráfico mostra a diferença gritante na retenção de conhecimento entre a leitura passiva e métodos ativos. Ao se envolver com o material, você constrói memórias mais fortes e duradouras.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <section id="data-sources" class="bg-white rounded-lg shadow-lg p-6 md:p-8 mt-10">
+                <h2 class="text-xl font-bold text-[#003F5C] mb-4 border-b pb-2 border-[#6B9DB3]">Nota sobre os Dados e Fontes</h2>
+                <p class="text-gray-700 mb-4">
+                    Os gráficos e estatísticas apresentados neste infográfico são baseados em dados conceituais e padrões de pesquisa amplamente aceitos nas áreas de pedagogia, produtividade e psicologia cognitiva, aplicados ao contexto EAD. Eles servem para ilustrar o impacto potencial das estratégias e não representam resultados de pesquisas específicas da Unifor, a menos que referenciado separadamente.
+                </p>
+                <div class="space-y-2 text-sm">
+                    <p class="font-semibold text-[#366E8A]">Fontes Conceituais e Metodologias:</p>
+                    <ul class="list-disc list-inside text-gray-600 pl-4">
+                        <li>Curva de Retenção (Estratégia 5): Baseado na teoria da Curva do Esquecimento de Hermann Ebbinghaus e princípios de Revisão Espaçada.</li>
+                        <li>Técnica Pomodoro (Estratégia 3): Metodologia desenvolvida por Francesco Cirillo.</li>
+                        <li>Produtividade e Ambiente (Estratégia 2): Estudos sobre foco, interrupção e o custo de troca de contexto no aprendizado.</li>
+                        <li>Colaboração EAD (Estratégia 4): Princípios de aprendizado social e colaborativo (e.g., Vygotsky).</li>
+                        <li>Organização da Rotina (Estratégia 1): Sugestões de gestão de tempo e priorização para estudantes adultos.</li>
+                    </ul>
+                    <p class="text-gray-500 mt-4">Para referências acadêmicas detalhadas, consulte periódicos especializados em Educação a Distância e Psicologia da Aprendizagem.</p>
+                </div>
+            </section>
+
+            <section class="text-center mt-12 p-8 bg-gradient-to-r from-[#003F5C] to-[#366E8A] text-white rounded-lg shadow-2xl">
+                <h2 class="text-3xl font-bold mb-4">Sua Vez! Qual sua Dica #1 para Focar no EAD?</h2>
+                <p class="text-lg text-[#A5CAD6]">Compartilhe nos comentários e ajude outros estudantes a terem sucesso!</p>
+            </section>
+        </main>
+
+        <footer class="text-center mt-10 p-4 text-gray-600">
+            <p>&copy; 2025 Giovanni Moreira Guimarães.</p>
+        </footer>
+    </div>
+
+    <script>
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label, maxWidth = 16) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 1 ? lines : label;
+        };
+
+        const colors = {
+            darkBlue: '#003F5C',
+            midBlue: '#366E8A',
+            lightBlue: '#6B9DB3',
+            paleBlue: '#A5CAD6',
+            bgColor: '#E0F7FA'
+        };
+
+        const routineCtx = document.getElementById('routineChart').getContext('2d');
+        new Chart(routineCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Estudo', 'Descanso', 'Lazer', 'Outras Atividades'],
+                datasets: [{
+                    label: 'Distribuição do Dia',
+                    data: [6, 8, 4, 6],
+                    backgroundColor: [colors.darkBlue, colors.midBlue, colors.lightBlue, colors.paleBlue],
+                    borderColor: '#fff',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribuição de Horas em um Dia',
+                        color: colors.darkBlue,
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        const distractionCtx = document.getElementById('distractionChart').getContext('2d');
+        const distractionLabels = ['Com Distrações', wrapLabel('Ambiente Focado e Sem Distrações')];
+        new Chart(distractionCtx, {
+            type: 'bar',
+            data: {
+                labels: distractionLabels,
+                datasets: [{
+                    label: 'Nível de Produtividade (%)',
+                    data: [40, 95],
+                    backgroundColor: [colors.lightBlue, colors.darkBlue],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                plugins: {
+                     ...tooltipTitleCallback.plugins,
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Produtividade: Ambiente Com vs. Sem Distrações',
+                        color: colors.darkBlue,
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+        
+        const interactionCtx = document.getElementById('interactionChart').getContext('2d');
+        new Chart(interactionCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Resolução de Problemas', 'Motivação', 'Retenção de Conteúdo', 'Compreensão', 'Networking'],
+                datasets: [
+                    {
+                        label: 'Estudante Interativo',
+                        data: [9, 8, 8, 9, 7],
+                        backgroundColor: 'rgba(0, 63, 92, 0.4)',
+                        borderColor: colors.darkBlue,
+                        pointBackgroundColor: colors.darkBlue,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: colors.darkBlue
+                    },
+                    {
+                        label: 'Estudante Isolado',
+                        data: [5, 6, 6, 7, 3],
+                        backgroundColor: 'rgba(165, 202, 214, 0.4)',
+                        borderColor: colors.paleBlue,
+                        pointBackgroundColor: colors.paleBlue,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: colors.paleBlue
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#ccc'
+                        },
+                        grid: {
+                            color: '#ddd'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12
+                            },
+                            color: colors.midBlue
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    title: {
+                        display: true,
+                        text: 'Impacto da Interação nas Competências',
+                        color: colors.darkBlue,
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+        
+        const retentionCtx = document.getElementById('retentionChart').getContext('2d');
+        new Chart(retentionCtx, {
+            type: 'line',
+            data: {
+                labels: ['Dia 1', 'Dia 3', 'Dia 7', 'Dia 30'],
+                datasets: [
+                    {
+                        label: 'Revisão Ativa (Resumos, Mapas Mentais)',
+                        data: [100, 90, 85, 75],
+                        borderColor: colors.darkBlue,
+                        backgroundColor: 'rgba(0, 63, 92, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Leitura Passiva',
+                        data: [100, 60, 35, 10],
+                        borderColor: colors.lightBlue,
+                        backgroundColor: 'rgba(107, 157, 179, 0.2)',
+                        fill: true,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    title: {
+                        display: true,
+                        text: 'Curva de Retenção de Conhecimento',
+                        color: colors.darkBlue,
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
